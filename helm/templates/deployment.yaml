@@ -36,3 +36,121 @@ spec:
         value: {{ .Values.tolgee.maxScreenshots }}
       - name: TOLGEE_MAX_UPLOAD_FILE_SIZE
         value: {{ .Values.tolgee.maxUploadFileSize }}
+      - name: TOLGEE_SPRING_DATASOURCE_URL
+        value: {{ .Values.tolgee.datasource.url }}
+      - name: TOLGEE_SPRING_DATASOURCE_USERNAME
+        value: {{ .Values.tolgee.datasource.username }}
+      - name: TOLGEE_SPRING_DATASOURCE_PASSWORD
+        value: {{ .Values.tolgee.datasource.password }}
+      {{- if .Values.tolgee.auth.enabled -}}
+      - name: TOLGEE_AUTHENTICATION_ENABLED
+        value: {{ .Values.tolgee.auth.enabled }}
+      - name: TOLGEE_AUTHENTICATION_INITIAL_PASSWORD
+        value: {{ .Values.tolgee.auth.initialPassword }}
+      - name: TOLGEE_AUTHENTICATION_INITIAL_USERNAME
+        value: {{ .Values.tolgee.auth.initialUsername }}
+      - name: TOLGEE_AUTHENTICATION_JWT_SECRET
+        value: {{ .Values.tolgee.auth.jwtSecret }}
+      {{- end -}}
+      {{- if .Values.tolgee.cache.enabled -}}
+      - name: TOLGEE_CACHE_ENABLED
+        value: {{ .Values.tolgee.cache.enabled }}
+      - name: TOLGEE_CACHE_DEFAULT_TTL
+        value: {{ .Values.tolgee.cache.ttl }}
+      - name: TOLGEE_CACHE_USE_REDIS
+        value: {{ .Values.tolgee.cache.useRedis }}
+      {{- end -}}
+      {{- if .Values.tolgee.smtp.enabled -}}
+      - name: TOLGEE_SMTP_AUTH
+        value: {{ .Values.tolgee.smtp.enabled }}
+      - name: TOLGEE_SMTP_HOST
+        value: {{ .Values.tolgee.smtp.host }}
+      - name: TOLGEE_SMTP_PORT
+        value: {{ .Values.tolgee.smtp.port }}
+      - name: TOLGEE_SMTP_USERNAME
+        value: {{ .Values.tolgee.smtp.username }}
+      - name: TOLGEE_SMTP_PASSWORD
+        value: {{ .Values.tolgee.smtp.password }}
+      - name: TOLGEE_SMTP_FROM  
+        value: {{ .Values.tolgee.smtp.from }}
+      - name: TOLGEE_SMTP_SSL_ENABLED
+        value: {{ .Values.tolgee.smtp.ssl }}
+      - name: TOLGEE_SMTP_TLS_ENABLED
+        value: {{ .Values.tolgee.smtp.tls }}
+      {{- end -}}
+      - name: TOLGEE_TRANSLATE_FREE_CREDITS
+        value: {{ .Values.tolgee.translate.freeCredits }}
+      {{- if .Values.translate.deepl.enabled }}
+      - name: TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_ENABLED
+        value: {{ .Values.translate.deepl.enabled | quote }}
+      - name: TOLGEE_MACHINE_TRANSLATION_DEEPL_AUTH_KEY
+        value: {{ .Values.translate.deepl.authKey }}
+      - name: TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_PRIMARY
+        value: {{ .Values.translate.deepl.defaultPrimary | quote }}
+      {{- end }}
+      {{- if .Values.translate.awsTranslate.enabled }}
+      - name: TOLGEE_MACHINE_TRANSLATION_AWS_DEFAULT_ENABLED
+        value: {{ .Values.translate.awsTranslate.enabled | quote }}
+      - name: TOLGEE_MACHINE_TRANSLATION_AWS_ACCESS_KEY
+        value: {{ .Values.translate.awsTranslate.accessKey }}
+      - name: TOLGEE_MACHINE_TRANSLATION_AWS_SECRET_KEY
+        value: {{ .Values.translate.awsTranslate.secretKey }}
+      - name: TOLGEE_MACHINE_TRANSLATION_AWS_DEFAULT_PRIMARY
+        value: {{ .Values.translate.awsTranslate.defaultPrimary | quote }}
+      - name: TOLGEE_MACHINE_TRANSLATION_AWS_REGION
+        value: {{ .Values.translate.awsTranslate.region }}
+      {{- end }}
+      {{- if .Values.translate.azureTranslation.enabled }}
+      - name: TOLGEE_MACHINE_TRANSLATION_AZURE_DEFAULT_ENABLED
+        value: {{ .Values.translate.azureTranslation.enabled | quote }}
+      - name: TOLGEE_MACHINE_TRANSLATION_AZURE_DEFAULT_PRIMARY
+        value: {{ .Values.translate.azureTranslation.defaultPrimary | quote }}
+      - name: TOLGEE_MACHINE_TRANSLATION_AZURE_REGION
+        value: {{ .Values.translate.azureTranslation.region }}
+      - name: TOLGEE_MACHINE_TRANSLATION_AZURE_AUTH_KEY
+        value: {{ .Values.translate.azureTranslation.authKey }}
+      {{- end }}
+      {{- if .Values.translate.baiduTranslate.enabled }}
+      - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_DEFAULT_ENABLED
+        value: {{ .Values.translate.baiduTranslate.enabled | quote }}
+      - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_DEFAULT_PRIMARY
+        value: {{ .Values.translate.baiduTranslate.defaultPrimary | quote }}
+      - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_ACTION
+        value: {{ .Values.translate.baiduTranslate.action }}
+      - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_ID
+        value: {{ .Values.translate.baiduTranslate.appId }}
+      - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_SECRET
+        value: {{ .Values.translate.baiduTranslate.appSecret }}
+      {{- end }}
+      {{- if .Values.translate.googleTranslate.enabled }}
+      - name: TOLGEE_MACHINE_TRANSLATION_GOOGLE_DEFAULT_ENABLED
+        value: {{ .Values.translate.googleTranslate.enabled | quote }}
+      - name: TOLGEE_MACHINE_TRANSLATION_GOOGLE_DEFAULT_PRIMARY
+        value: {{ .Values.translate.googleTranslate.defaultPrimary | quote }}
+      - name: TOLGEE_MACHINE_TRANSLATION_GOOGLE_API_KEY
+        value: {{ .Values.translate.googleTranslate.apiKey }}
+      {{- end }}
+      {{- if .Values.contentDelivery.enabled }}
+      - name: TOLGEE_CONTENT_DELIVERY_ENABLED
+        value: {{ .Values.contentDelivery.enabled | quote }}
+      - name: TOLGEE_CONTENT_DELIVERY_PUBLIC_URL_PREFIX
+        value: {{ .Values.contentDelivery.publicUrlPrefix }}
+      - name: TOLGEE_CONTENT_DELIVERY_STORAGE_TYPE
+        value: {{ .Values.contentDelivery.storageType }}
+      - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ACCESS_KEY
+        value: {{ .Values.contentDelivery.storageS3.accessKey }}
+      - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SECRET_KEY
+        value: {{ .Values.contentDelivery.storageS3.secretKey }}
+      - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ENDPOINT
+        value: {{ .Values.contentDelivery.storageS3.endpoint }}
+      - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_BUCKET_NAME
+        value: {{ .Values.contentDelivery.storageS3.bucketName }}
+      - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SIGNING_REGION
+        value: {{ .Values.contentDelivery.storageS3.signingRegion }}
+      {{- end }}
+      {{- if .Values.telemetry.enabled }}
+      - name: TOLGEE_TELEMETRY_ENABLED
+        value: {{ .Values.telemetry.enabled | quote }}
+      - name: TOLGEE_TELEMETRY_SERVER_URL
+        value: {{ .Values.telemetry.serverUrl }}
+      {{- end }}
