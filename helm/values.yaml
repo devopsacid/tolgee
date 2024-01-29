@@ -37,7 +37,7 @@ tolgee:
     name: tolgee-storage
     size: 10Gi
     accessMode: ReadWriteOnce
-    storageClass: ""    # azurefile-csi
+    storageClass: "default"    # azurefile-csi
     existingClaim: "pvc-tolgee-storage"   # tolgee-storage
     annotations: {}
       # volume.beta.kubernetes.io/storage-class: azurefile-csi
