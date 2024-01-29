@@ -24,4 +24,58 @@ ingress:
     #   hosts:
     #     - tolgee.example.com
 
+
+tolgee:
+  storage:
+    mountPath: /data  # TOLGEE_FILE_STORAGE
+    enabled: true
+    size: 10Gi
+    accessMode: ReadWriteOnce
+    storageClass: "azurefile-csi"
+    annotations: {}
+      # volume.beta.kubernetes.io/storage-class: azurefile-csi
+      # volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/azure-file
+  env: {}
+  database:
+    host: postgres 
+    port: 5432
+    database: tolgee
+    username: tolgee
+    password: tolgee
+  authentication:
+    enabled: true # TOLGEE_AUTHENTICATION_ENABLED
+    initial-password: admin # TOLGEE_AUTHENTICATION_INITIAL_PASSWORD
+    initial-username: admin # TOLGEE_AUTHENTICATION_INITIAL_USERNAME
+    jwt-secret: HASH  # TOLGEE_AUTHENTICATION_JWT_SECRET
+  smtp: 
+    host: smtp.example.com # TOLGEE_SMTP_HOST
+    port: 587 # TOLGEE_SMTP_PORT
+    username: smtp-username # TOLGEE_SMTP_USERNAME
+    password: smtp-password # TOLGEE_SMTP_PASSWORD
+    from: smtp-from # TOLGEE_SMTP_FROM
+    tls: true # TOLGEE_SMTP_TLS_ENABLED
+    auth: true  # TOLGEE_SMTP_AUTH
+  cache:
+    enabled: true # TOLGEE_CACHE_ENABLED
+
+  # TODO redis addon
+  translate:
+    deepl:
+      enabled: true # TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_ENABLED
+      auth-key: key # TOLGEE_MACHINE_TRANSLATION_DEEPL_AUTH_KEY
+      default_primary: true # TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_PRIMARY
+  content_delivery:
+    public_url_prefix: http://localhost:8080 # TOLGEE_CONTENT_DELIVERY_PUBLIC_URL_PREFIX
+    azure: 
+      connection_string: connection # TOLGEE_CONTENT_DELIVERY_STORAGE_AZURE_CONNECTION_STRING
+      container_name: tolgee-content-delivery # TOLGEE_CONTENT_DELIVERY_STORAGE_AZURE_CONTAINER_NAME
+    s3:
+      access-key: key # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ACCESS_KEY
+      secret-key: key # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SECRET_KEY
+      endpoint: ep # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ENDPOINT
+      bucket-name: tolgee-content-delivery # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_BUCKET_NAME
+      region: region # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SIGNING_REGION
+  telemetry: 
+    enabled: true # TOLGEE_TELEMETRY_ENABLED
+    
 resources: {}
