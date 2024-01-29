@@ -48,53 +48,52 @@ tolgee:
     url: jdbc:postgresql://db:5432/postgres # TOLGEE_SPRING_DATASOURCE_URL
     username: tolgee # TOLGEE_SPRING_DATASOURCE_USERNAME
     password: tolgee # TOLGEE_SPRING_DATASOURCE_PASSWORD
-  authentication:
+  auth:
     enabled: true # TOLGEE_AUTHENTICATION_ENABLED
     initialPassword: admin # TOLGEE_AUTHENTICATION_INITIAL_PASSWORD
     initialUsername: admin # TOLGEE_AUTHENTICATION_INITIAL_USERNAME
     jwtSecret: HASH  # TOLGEE_AUTHENTICATION_JWT_SECRET
   smtp: 
+    enabled: true  # TOLGEE_SMTP_AUTH
     host: smtp.example.com # TOLGEE_SMTP_HOST
     port: 587 # TOLGEE_SMTP_PORT
     username: smtp-username # TOLGEE_SMTP_USERNAME
-    password: smtp-password # TOLGEE_SMTP_PASSWORD
+    password: "" # TOLGEE_SMTP_PASSWORD
     from: smtp-from # TOLGEE_SMTP_FROM
     tls: true # TOLGEE_SMTP_TLS_ENABLED
-    auth: true  # TOLGEE_SMTP_AUTH
+    ssl: false # TOLGEE_SMTP_SSL_ENABLED
   cache:
     enabled: true # TOLGEE_CACHE_ENABLED
-    defaultTtl: 720000 # TOLGEE_CACHE_DEFAULT_TTL
+    ttl: 720000 # TOLGEE_CACHE_DEFAULT_TTL
     useRedis: false # TOLGEE_CACHE_USE_REDIS
     # In a distributed environment, you should use a Redis server to ensure consistent enforcement of rate limits, as they heavily rely on cache. For a simple single-node deployment, in-memory cache is sufficient.
-
   translate:
     freeCredits: "-1" # TOLGEE_TRANSLATE_FREE_CREDITS
     deepl:
       enabled: false # TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_ENABLED
-      authKey: key # TOLGEE_MACHINE_TRANSLATION_DEEPL_AUTH_KEY
+      authKey: "" # TOLGEE_MACHINE_TRANSLATION_DEEPL_AUTH_KEY
       defaultPrimary: true # TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_PRIMARY
     awsTranslate:
       enabled: false # TOLGEE_MACHINE_TRANSLATION_AWS_DEFAULT_ENABLED
-      accessKey: key # TOLGEE_MACHINE_TRANSLATION_AWS_ACCESS_KEY
-      secretKey: key # TOLGEE_MACHINE_TRANSLATION_AWS_SECRET_KEY
+      accessKey: "" # TOLGEE_MACHINE_TRANSLATION_AWS_ACCESS_KEY
+      secretKey: "" # TOLGEE_MACHINE_TRANSLATION_AWS_SECRET_KEY
       defaultPrimary: false # TOLGEE_MACHINE_TRANSLATION_AWS_DEFAULT_PRIMARY
       region: region # TOLGEE_MACHINE_TRANSLATION_AWS_REGION
     azureTranslation:
       enabled: false # TOLGEE_MACHINE_TRANSLATION_AZURE_DEFAULT_ENABLED
       defaultPrimary: false # TOLGEE_MACHINE_TRANSLATION_AZURE_DEFAULT_PRIMARY
       region: region # TOLGEE_MACHINE_TRANSLATION_AZURE_REGION
-      authKey: key # TOLGEE_MACHINE_TRANSLATION_AZURE_AUTH_KEY
+      authKey: "" # TOLGEE_MACHINE_TRANSLATION_AZURE_AUTH_KEY
     baiduTranslate:
       enabled: false # TOLGEE_MACHINE_TRANSLATION_BAIDU_DEFAULT_ENABLED
       defaultPrimary: false # TOLGEE_MACHINE_TRANSLATION_BAIDU_DEFAULT_PRIMARY
       action: action # TOLGEE_MACHINE_TRANSLATION_BAIDU_ACTION
-      appId: app_id # TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_ID
-      appSecret: app_secret # TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_SECRET
+      appId: "" # TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_ID
+      appSecret: "" # TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_SECRET
     googleTranslate:
       enabled: false # TOLGEE_MACHINE_TRANSLATION_GOOGLE_DEFAULT_ENABLED
       defaultPrimary: false # TOLGEE_MACHINE_TRANSLATION_GOOGLE_DEFAULT_PRIMARY
-      apiKey: api_key # TOLGEE_MACHINE_TRANSLATION_GOOGLE_API_KEY
-    
+      apiKey: "" # TOLGEE_MACHINE_TRANSLATION_GOOGLE_API_KEY 
   # content delivery for translations 
   contentDelivery:
     publicUrlPrefix: http://localhost:8080 # TOLGEE_CONTENT_DELIVERY_PUBLIC_URL_PREFIX
@@ -102,9 +101,9 @@ tolgee:
       connectionString: connection # TOLGEE_CONTENT_DELIVERY_STORAGE_AZURE_CONNECTION_STRING
       containerName: tolgee-content-delivery # TOLGEE_CONTENT_DELIVERY_STORAGE_AZURE_CONTAINER_NAME
     s3:
-      accessKey: key # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ACCESS_KEY
-      secretKey: key # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SECRET_KEY
-      endpoint: ep # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ENDPOINT
+      accessKey: "" # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ACCESS_KEY
+      secretKey: "" # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SECRET_KEY
+      endpoint: s3_end_point # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ENDPOINT
       bucketName: tolgee-content-delivery # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_BUCKET_NAME
       region: region # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SIGNING_REGION
   
