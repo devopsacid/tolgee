@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.tolgee.storage.name }}
+  labels:
+    type: {{ .Values.tolgee.storage.storageClass }}
+spec:
+  storageClassName: {{ .Values.tolgee.storage.storageClass }}
+  capacity:
+    storage: {{ .Values.tolgee.storage.size }}
+  accessModes:
+    - {{ .Values.tolgee.storage.accessMode }}
+  hostPath:
+    path: {{ .Values.tolgee.fileStorageUrl }}

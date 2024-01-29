@@ -18,10 +18,21 @@ spec:
     spec:
       containers:
         - name: tolgee
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - containerPort: 8080
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-        
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+          - containerPort: 8080
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+
+    env:
+      - name: TOLGEE_FILE_STORAGE_URL 
+        value: {{ .Values.tolgee.fileStorageUrl }}
+      - name: TOLGEE_FRONT_END_URL 
+        value: {{ .Values.tolgee.frontEndUrl }}
+      - name: TOLGEE_MAX_FILE_SIZE 
+        value: {{ .Values.tolgee.maxUploadFileSize }}
+      - name: TOLGEE_MAX_SCREENSHOTS_PER_KEY
+        value: {{ .Values.tolgee.maxScreenshots }}
+      - name: TOLGEE_MAX_UPLOAD_FILE_SIZE
+        value: {{ .Values.tolgee.maxUploadFileSize }}
