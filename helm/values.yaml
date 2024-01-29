@@ -1,0 +1,27 @@
+replicaCount: 1
+
+fullname: tolgee
+labels: {}
+
+image:
+  repository: tolgee/tolgee
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false  # Set to true to enable Ingress
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  host: tolgee.example.com
+  path: /
+  tls: []
+    # - secretName: tolgee-tls
+    #   hosts:
+    #     - tolgee.example.com
+
+resources: {}
