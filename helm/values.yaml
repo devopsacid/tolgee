@@ -24,29 +24,35 @@ ingress:
     #   hosts:
     #     - tolgee.example.com
 
-
 tolgee:
+  fileStorageUrl: /data # TOLGEE_FILE_STORAGE_URL
+  frontEndUrl: http://localhost:8080 # TOLGEE_FRONT_END_URL 
+  maxScreenshots: 20 # TOLGEE_MAX_SCREENSHOTS_PER_KEY
+  maxTranslation_length: 10000 # TOLGEE_MAX_TRANSLATION_LENGTH
+  maxUploadFileSize: 51200   # TOLGEE_MAX_UPLOAD_FILE_SIZE in KB
+
+  # storage definition for tolgee
   storage:
-    mountPath: /data  # TOLGEE_FILE_STORAGE
     enabled: true
+    name: tolgee-storage
     size: 10Gi
     accessMode: ReadWriteOnce
-    storageClass: "azurefile-csi"
+    storageClass: ""    # azurefile-csi
+    existingClaim: "pvc-tolgee-storage"   # tolgee-storage
     annotations: {}
       # volume.beta.kubernetes.io/storage-class: azurefile-csi
       # volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/azure-file
-  env: {}
-  database:
-    host: postgres 
-    port: 5432
-    database: tolgee
-    username: tolgee
-    password: tolgee
+
+  # database definition for tolgee
+  datasource:
+    url: jdbc:postgresql://db:5432/postgres # TOLGEE_SPRING_DATASOURCE_URL
+    username: tolgee # TOLGEE_SPRING_DATASOURCE_USERNAME
+    password: tolgee # TOLGEE_SPRING_DATASOURCE_PASSWORD
   authentication:
     enabled: true # TOLGEE_AUTHENTICATION_ENABLED
-    initial-password: admin # TOLGEE_AUTHENTICATION_INITIAL_PASSWORD
-    initial-username: admin # TOLGEE_AUTHENTICATION_INITIAL_USERNAME
-    jwt-secret: HASH  # TOLGEE_AUTHENTICATION_JWT_SECRET
+    initialPassword: admin # TOLGEE_AUTHENTICATION_INITIAL_PASSWORD
+    initialUsername: admin # TOLGEE_AUTHENTICATION_INITIAL_USERNAME
+    jwtSecret: HASH  # TOLGEE_AUTHENTICATION_JWT_SECRET
   smtp: 
     host: smtp.example.com # TOLGEE_SMTP_HOST
     port: 587 # TOLGEE_SMTP_PORT
@@ -57,25 +63,55 @@ tolgee:
     auth: true  # TOLGEE_SMTP_AUTH
   cache:
     enabled: true # TOLGEE_CACHE_ENABLED
+    defaultTtl: 720000 # TOLGEE_CACHE_DEFAULT_TTL
+    useRedis: false # TOLGEE_CACHE_USE_REDIS
+    # In a distributed environment, you should use a Redis server to ensure consistent enforcement of rate limits, as they heavily rely on cache. For a simple single-node deployment, in-memory cache is sufficient.
 
-  # TODO redis addon
   translate:
+    freeCredits: "-1" # TOLGEE_TRANSLATE_FREE_CREDITS
     deepl:
-      enabled: true # TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_ENABLED
-      auth-key: key # TOLGEE_MACHINE_TRANSLATION_DEEPL_AUTH_KEY
-      default_primary: true # TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_PRIMARY
-  content_delivery:
-    public_url_prefix: http://localhost:8080 # TOLGEE_CONTENT_DELIVERY_PUBLIC_URL_PREFIX
+      enabled: false # TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_ENABLED
+      authKey: key # TOLGEE_MACHINE_TRANSLATION_DEEPL_AUTH_KEY
+      defaultPrimary: true # TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_PRIMARY
+    awsTranslate:
+      enabled: false # TOLGEE_MACHINE_TRANSLATION_AWS_DEFAULT_ENABLED
+      accessKey: key # TOLGEE_MACHINE_TRANSLATION_AWS_ACCESS_KEY
+      secretKey: key # TOLGEE_MACHINE_TRANSLATION_AWS_SECRET_KEY
+      defaultPrimary: false # TOLGEE_MACHINE_TRANSLATION_AWS_DEFAULT_PRIMARY
+      region: region # TOLGEE_MACHINE_TRANSLATION_AWS_REGION
+    azureTranslation:
+      enabled: false # TOLGEE_MACHINE_TRANSLATION_AZURE_DEFAULT_ENABLED
+      defaultPrimary: false # TOLGEE_MACHINE_TRANSLATION_AZURE_DEFAULT_PRIMARY
+      region: region # TOLGEE_MACHINE_TRANSLATION_AZURE_REGION
+      authKey: key # TOLGEE_MACHINE_TRANSLATION_AZURE_AUTH_KEY
+    baiduTranslate:
+      enabled: false # TOLGEE_MACHINE_TRANSLATION_BAIDU_DEFAULT_ENABLED
+      defaultPrimary: false # TOLGEE_MACHINE_TRANSLATION_BAIDU_DEFAULT_PRIMARY
+      action: action # TOLGEE_MACHINE_TRANSLATION_BAIDU_ACTION
+      appId: app_id # TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_ID
+      appSecret: app_secret # TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_SECRET
+    googleTranslate:
+      enabled: false # TOLGEE_MACHINE_TRANSLATION_GOOGLE_DEFAULT_ENABLED
+      defaultPrimary: false # TOLGEE_MACHINE_TRANSLATION_GOOGLE_DEFAULT_PRIMARY
+      apiKey: api_key # TOLGEE_MACHINE_TRANSLATION_GOOGLE_API_KEY
+    
+  # content delivery for translations 
+  contentDelivery:
+    publicUrlPrefix: http://localhost:8080 # TOLGEE_CONTENT_DELIVERY_PUBLIC_URL_PREFIX
     azure: 
-      connection_string: connection # TOLGEE_CONTENT_DELIVERY_STORAGE_AZURE_CONNECTION_STRING
-      container_name: tolgee-content-delivery # TOLGEE_CONTENT_DELIVERY_STORAGE_AZURE_CONTAINER_NAME
+      connectionString: connection # TOLGEE_CONTENT_DELIVERY_STORAGE_AZURE_CONNECTION_STRING
+      containerName: tolgee-content-delivery # TOLGEE_CONTENT_DELIVERY_STORAGE_AZURE_CONTAINER_NAME
     s3:
-      access-key: key # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ACCESS_KEY
-      secret-key: key # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SECRET_KEY
+      accessKey: key # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ACCESS_KEY
+      secretKey: key # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SECRET_KEY
       endpoint: ep # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ENDPOINT
-      bucket-name: tolgee-content-delivery # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_BUCKET_NAME
+      bucketName: tolgee-content-delivery # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_BUCKET_NAME
       region: region # TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SIGNING_REGION
+  
+  # telemetry addon for sharing data with tolgee
   telemetry: 
     enabled: true # TOLGEE_TELEMETRY_ENABLED
-    
+
+  env: {}
+
 resources: {}
