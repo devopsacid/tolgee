@@ -63,7 +63,7 @@ tolgee:
     tls: true # TOLGEE_SMTP_TLS_ENABLED
     ssl: false # TOLGEE_SMTP_SSL_ENABLED
   cache:
-    enabled: true # TOLGEE_CACHE_ENABLED
+    enabled: false # TOLGEE_CACHE_ENABLED
     ttl: 720000 # TOLGEE_CACHE_DEFAULT_TTL
     useRedis: false # TOLGEE_CACHE_USE_REDIS
     # In a distributed environment, you should use a Redis server to ensure consistent enforcement of rate limits, as they heavily rely on cache. For a simple single-node deployment, in-memory cache is sufficient.
