@@ -80,55 +80,55 @@ spec:
       {{- end -}}
       - name: TOLGEE_TRANSLATE_FREE_CREDITS
         value: {{ .Values.tolgee.translate.freeCredits }}
-      {{- if .Values.translate.deepl.enabled }}
+      {{- if .Values.tolgee.translate.deepl.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_ENABLED
-        value: {{ .Values.translate.deepl.enabled }}
+        value: {{ .Values.tolgee.translate.deepl.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_DEEPL_AUTH_KEY
-        value: {{ .Values.translate.deepl.authKey }}
+        value: {{ .Values.tolgee.translate.deepl.authKey }}
       - name: TOLGEE_MACHINE_TRANSLATION_DEEPL_DEFAULT_PRIMARY
-        value: {{ .Values.translate.deepl.defaultPrimary }}
+        value: {{ .Values.tolgee.translate.deepl.defaultPrimary }}
       {{- end }}
-      {{- if .Values.translate.awsTranslate.enabled }}
+      {{- if .Values.tolgee.translate.awsTranslate.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_AWS_DEFAULT_ENABLED
-        value: {{ .Values.translate.awsTranslate.enabled }}
+        value: {{ .Values.tolgee.translate.awsTranslate.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_AWS_ACCESS_KEY
-        value: {{ .Values.translate.awsTranslate.accessKey }}
+        value: {{ .Values.tolgee.translate.awsTranslate.accessKey }}
       - name: TOLGEE_MACHINE_TRANSLATION_AWS_SECRET_KEY
-        value: {{ .Values.translate.awsTranslate.secretKey }}
+        value: {{ .Values.tolgee.translate.awsTranslate.secretKey }}
       - name: TOLGEE_MACHINE_TRANSLATION_AWS_DEFAULT_PRIMARY
-        value: {{ .Values.translate.awsTranslate.defaultPrimary }}
+        value: {{ .Values.tolgee.translate.awsTranslate.defaultPrimary }}
       - name: TOLGEE_MACHINE_TRANSLATION_AWS_REGION
-        value: {{ .Values.translate.awsTranslate.region }}
+        value: {{ .Values.tolgee.translate.awsTranslate.region }}
       {{- end }}
-      {{- if .Values.translate.azureTranslation.enabled }}
+      {{- if .Values.tolgee.translate.azureTranslation.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_AZURE_DEFAULT_ENABLED
-        value: {{ .Values.translate.azureTranslation.enabled }}
+        value: {{ .Values.tolgee.translate.azureTranslation.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_AZURE_DEFAULT_PRIMARY
-        value: {{ .Values.translate.azureTranslation.defaultPrimary }}
+        value: {{ .Values.tolgee.translate.azureTranslation.defaultPrimary }}
       - name: TOLGEE_MACHINE_TRANSLATION_AZURE_REGION
-        value: {{ .Values.translate.azureTranslation.region }}
+        value: {{ .Values.tolgee.translate.azureTranslation.region }}
       - name: TOLGEE_MACHINE_TRANSLATION_AZURE_AUTH_KEY
-        value: {{ .Values.translate.azureTranslation.authKey }}
+        value: {{ .Values.tolgee.translate.azureTranslation.authKey }}
       {{- end }}
-      {{- if .Values.translate.baiduTranslate.enabled }}
+      {{- if .Values.tolgee.translate.baiduTranslate.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_DEFAULT_ENABLED
-        value: {{ .Values.translate.baiduTranslate.enabled }}
+        value: {{ .Values.tolgee.translate.baiduTranslate.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_DEFAULT_PRIMARY
-        value: {{ .Values.translate.baiduTranslate.defaultPrimary }}
+        value: {{ .Values.tolgee.translate.baiduTranslate.defaultPrimary }}
       - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_ACTION
-        value: {{ .Values.translate.baiduTranslate.action }}
+        value: {{ .Values.tolgee.translate.baiduTranslate.action }}
       - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_ID
-        value: {{ .Values.translate.baiduTranslate.appId }}
+        value: {{ .Values.tolgee.translate.baiduTranslate.appId }}
       - name: TOLGEE_MACHINE_TRANSLATION_BAIDU_APP_SECRET
-        value: {{ .Values.translate.baiduTranslate.appSecret }}
+        value: {{ .Values.tolgee.translate.baiduTranslate.appSecret }}
       {{- end }}
-      {{- if .Values.translate.googleTranslate.enabled }}
+      {{- if .Values.tolgee.translate.googleTranslate.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_GOOGLE_DEFAULT_ENABLED
-        value: {{ .Values.translate.googleTranslate.enabled }}
+        value: {{ .Values.tolgee.translate.googleTranslate.enabled }}
       - name: TOLGEE_MACHINE_TRANSLATION_GOOGLE_DEFAULT_PRIMARY
-        value: {{ .Values.translate.googleTranslate.defaultPrimary }}
+        value: {{ .Values.tolgee.translate.googleTranslate.defaultPrimary }}
       - name: TOLGEE_MACHINE_TRANSLATION_GOOGLE_API_KEY
-        value: {{ .Values.translate.googleTranslate.apiKey }}
+        value: {{ .Values.tolgee.translate.googleTranslate.apiKey }}
       {{- end }}
       {{- if .Values.contentDelivery.enabled }}
       - name: TOLGEE_CONTENT_DELIVERY_ENABLED
