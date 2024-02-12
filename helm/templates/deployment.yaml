@@ -148,9 +148,9 @@ spec:
       - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SIGNING_REGION
         value: {{ .Values.tolgee.contentDelivery.storageS3.signingRegion }}
       {{- end }}
-      {{- if .Values.telemetry.enabled }}
+      {{- if .Values.tolgee.telemetry.enabled }}
       - name: TOLGEE_TELEMETRY_ENABLED
-        value: {{ .Values.telemetry.enabled | quote }}
+        value: {{ .Values.tolgee.telemetry.enabled | quote }}
       - name: TOLGEE_TELEMETRY_SERVER_URL
-        value: {{ .Values.telemetry.serverUrl }}
+        value: {{ .Values.tolgee.telemetry.serverUrl }}
       {{- end }}
