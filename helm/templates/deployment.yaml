@@ -130,23 +130,23 @@ spec:
       - name: TOLGEE_MACHINE_TRANSLATION_GOOGLE_API_KEY
         value: {{ .Values.tolgee.translate.googleTranslate.apiKey }}
       {{- end }}
-      {{- if .Values.contentDelivery.enabled }}
+      {{- if .Values.tolgee.contentDelivery.enabled }}
       - name: TOLGEE_CONTENT_DELIVERY_ENABLED
-        value: {{ .Values.contentDelivery.enabled }}
+        value: {{ .Values.tolgee.contentDelivery.enabled }}
       - name: TOLGEE_CONTENT_DELIVERY_PUBLIC_URL_PREFIX
-        value: {{ .Values.contentDelivery.publicUrlPrefix }}
+        value: {{ .Values.tolgee.contentDelivery.publicUrlPrefix }}
       - name: TOLGEE_CONTENT_DELIVERY_STORAGE_TYPE
-        value: {{ .Values.contentDelivery.storageType }}
+        value: {{ .Values.tolgee.contentDelivery.storageType }}
       - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ACCESS_KEY
-        value: {{ .Values.contentDelivery.storageS3.accessKey }}
+        value: {{ .Values.tolgee.contentDelivery.storageS3.accessKey }}
       - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SECRET_KEY
-        value: {{ .Values.contentDelivery.storageS3.secretKey }}
+        value: {{ .Values.tolgee.contentDelivery.storageS3.secretKey }}
       - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_ENDPOINT
-        value: {{ .Values.contentDelivery.storageS3.endpoint }}
+        value: {{ .Values.tolgee.contentDelivery.storageS3.endpoint }}
       - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_BUCKET_NAME
-        value: {{ .Values.contentDelivery.storageS3.bucketName }}
+        value: {{ .Values.tolgee.contentDelivery.storageS3.bucketName }}
       - name: TOLGEE_CONTENT_DELIVERY_STORAGE_S3_SIGNING_REGION
-        value: {{ .Values.contentDelivery.storageS3.signingRegion }}
+        value: {{ .Values.tolgee.contentDelivery.storageS3.signingRegion }}
       {{- end }}
       {{- if .Values.telemetry.enabled }}
       - name: TOLGEE_TELEMETRY_ENABLED
