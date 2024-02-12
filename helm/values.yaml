@@ -6,8 +6,7 @@ labels: {}
 image:
   repository: tolgee/tolgee
   pullPolicy: IfNotPresent
-  tag: "latest"
-
+  tag: latest
 service:
   type: ClusterIP
   port: 8080
