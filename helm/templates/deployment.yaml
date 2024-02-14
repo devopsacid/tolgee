@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
         name: tolgee
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        # image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        image: tolgee/tolgee:latest
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
           - containerPort: 8080
