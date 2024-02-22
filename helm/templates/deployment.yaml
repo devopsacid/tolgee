@@ -23,8 +23,8 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
           - containerPort: 8080
-        resources:
-          {{- toYaml .Values.resources | nindent 12 -}}
+        # resources:
+        #   {{- toYaml .Values.resources | nindent 12 -}}
 
     env:
       - name: TOLGEE_FILE_STORAGE_URL 
